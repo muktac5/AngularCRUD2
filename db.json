@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "policyNo": 170001,
+      "policyHolderName": "Mukta",
+      "policyAmount": 1700000,
+      "EMIAmount": 17000,
+      "nomineeName": "M padma"
+    },
+    {
+      "id": 2,
+      "policyNo": 170002,
+      "policyHolderName": "laasya",
+      "policyAmount": 1700070,
+      "EMIAmount": 1700,
+      "nomineeName": "M D"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+<h1 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">CRUD APPLICATION WITH JSON SERVER</h1>
+
+<p align="right">
+ <button type="button" (click)="clickAddPolicy()" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right:70px;" class="btn btn-success">Add New Policy Record</button>
+</p>
+
+<body>
+  <div class="form-group">
+    <input type="text" class="form-control" style="margin-left:65px;width:700px" placeholder="Search Users Based on ID,Name,Nominees Name..." [(ngModel)]="filterTerm">
+  </div>
+  <div class="container table-responsive py-5">
+<table class="table table-bordered table-hover mt-3">
+
+    <thead class="thead-dark">
+        <th scope="col">Insurance Policy No</th>
+        <th scope="col">Policy Holders Name</th>
+        <th scope="col">Policy Amount</th>
+        <th scope="col">Amount for EMI</th>
+        <th scope="col">Nominees name</th>
+        <th scope="col">Actions</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of policyData | filter:filterTerm">
+            <td>{{row.policyNo}}</td>
+            <td>{{row.policyHolderName}}</td>
+            <td>{{row.policyAmount}}</td>
+            <td>{{row.EMIAmount}}</td>
+            <td>{{row.nomineeName}}</td>
+            <td>
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editPolicy(row)" class="btn btn-info">Edit</button>
+                <button (click)="deletePolicy(row)" class="btn btn-danger mx-3" >Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new policy record</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formValue">
+                <div class="mb-3">
+                  <label for="Insurance Policy No">Insurance Policy No</label>
+                  <input type="number" formControlName="policyNo" class="form-control" id="Insurance Policy No" placeholder="Enter Policy No.">
+                </div>
+                <div class="mb-3">
+                  <label for="Policy Holders Name">Policy Holders Name</label>
+                  <input type="text" formControlName="policyHolderName" class="form-control" id="Policy Holders Name" placeholder="Enter Full Name">
+                </div>
+                <div class="mb-3">
+                  <label for="Policy Amount">Policy Amount</label>
+                  <input type="number" formControlName="policyAmount" class="form-control" id="Policy Amount" placeholder="Enter Policy Amount">
+                </div>
+                <div class="mb-3">
+                  <label for="Amount for EMI">Amount for EMI</label>
+                  <input type="number" formControlName="EMIAmount" class="form-control" id="Amount for EMI" placeholder="Enter amount for EMI">
+                </div>
+                <div class="mb-3">
+                  <label for="Nominees Name">Nominees Name</label>
+                  <input type="text" formControlName="nomineeName" class="form-control" id="Nominees Name" placeholder="Enter the nominee's name">
+                </div>
+                <div class="mb-3">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Active Policy</label>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" *ngIf="showUpdate" (click)="updatePolicy()" class="btn btn-primary">Update</button>
+              <button type="button" *ngIf="showAdd" (click)="postPolicyDetails()"class="btn btn-primary">Add</button>
+              <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </body>
